@@ -34,7 +34,7 @@ function animate() {
     requestAnimationFrame(animate);
     analyser.getByteFrequencyData(dataArray);
 
-    // Фон: Глубокая фиолетовая ночь
+    
     ctx.fillStyle = 'rgba(2, 0, 5, 0.15)'; 
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -43,26 +43,26 @@ function animate() {
     const pointsToDraw = Math.floor(dataArray.length * 0.8);
     const sliceWidth = canvas.width / pointsToDraw;
     
-    // Сглаживание звука (0.05 - еще медленнее и плавнее)
+    
     const smoothingFactor = 0.05; 
     for (let i = 0; i < pointsToDraw; i++) {
         smoothedArray[i] = smoothedArray[i] * (1 - smoothingFactor) + dataArray[i] * smoothingFactor;
     }
 
-    // Создаем градиент для заполнения (от яркого неона в центре к пустоте)
+    
     const gradient = ctx.createLinearGradient(0, centerY - canvas.height/3, 0, centerY + canvas.height/3);
-    gradient.addColorStop(0, 'rgba(188, 19, 254, 0)');      // Верх прозрачный
-    gradient.addColorStop(0.5, 'rgba(188, 19, 254, 0.6)');    // Центр яркий
-    gradient.addColorStop(1, 'rgba(188, 19, 254, 0)');      // Низ прозрачный
+    gradient.addColorStop(0, 'rgba(188, 19, 254, 0)');      
+    gradient.addColorStop(0.5, 'rgba(188, 19, 254, 0.6)');   
+    gradient.addColorStop(1, 'rgba(188, 19, 254, 0)');      
 
     ctx.fillStyle = gradient;
     ctx.shadowBlur = 25;
     ctx.shadowColor = 'rgba(188, 19, 254, 0.5)';
 
-    // Рисуем симметричную область заполнения
+    
     function drawFilledWave(side) {
         ctx.beginPath();
-        ctx.moveTo(centerX, centerY); // Старт в центре
+        ctx.moveTo(centerX, centerY); 
 
         for (let i = 0; i < pointsToDraw; i++) {
             const v = smoothedArray[i];
@@ -73,7 +73,7 @@ function animate() {
             ctx.lineTo(x, y);
         }
 
-        // Замыкаем фигуру внизу для заполнения
+        
         for (let i = pointsToDraw - 1; i >= 0; i--) {
             const v = smoothedArray[i];
             const h = (canvas.height * 0.4) * Math.pow(v / 255, 1.2);
@@ -87,11 +87,11 @@ function animate() {
         ctx.fill();
     }
 
-    // Рисуем правую и левую часть
+    
     drawFilledWave(1);
     drawFilledWave(-1);
 
-    // Тонкая линия-разделитель (горизонт)
+    
     ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
     ctx.lineWidth = 1;
     ctx.beginPath();
