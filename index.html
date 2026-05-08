@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lo-Fi Night Visualizer</title>
+    <style>
+        body {
+            margin: 0;
+            background: #05000a;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            filter: blur(1px) contrast(1.2); /* Мягкое размытие для вайба */
+        }
+        #ui {
+            z-index: 10;
+        }
+        button {
+            padding: 15px 40px;
+            background: rgba(188, 19, 254, 0.1);
+            color: #bc13fe;
+            border: 1px solid #bc13fe;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            box-shadow: 0 0 20px rgba(188, 19, 254, 0.2);
+            transition: all 0.4s ease;
+        }
+        button:hover {
+            background: #bc13fe;
+            color: #fff;
+            box-shadow: 0 0 40px rgba(188, 19, 254, 0.6);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="ui">
+        <button id="startBtn">ACTIVATE NIGHT MODE</button>
+    </div>
+    
+    <canvas id="canvas"></canvas>
+
+    <script src="draw.js"></script>
+</body>
+</html>
